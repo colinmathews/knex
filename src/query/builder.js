@@ -27,6 +27,10 @@ function Builder(client) {
   this._joinFlag = 'inner';
   this._boolFlag = 'and';
   this._notFlag = false;
+  if (client.config && client.config.defaultCommandTimeout) {
+    this._timeout = client.config.defaultCommandTimeout;
+    this._cancelOnTimeout = client.config.defaultCancelOnTimeout !== false;
+  }
 }
 inherits(Builder, EventEmitter);
 

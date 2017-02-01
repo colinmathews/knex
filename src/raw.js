@@ -29,6 +29,10 @@ function Raw(client = fakeClient) {
   this._wrappedBefore = undefined
   this._wrappedAfter = undefined
   this._debug = client && client.config && client.config.debug
+  if (client.config && client.config.defaultCommandTimeout) {
+    this._timeout = client.config.defaultCommandTimeout
+    this._cancelOnTimeout = client.config.defaultCancelOnTimeout !== false
+  }
 }
 inherits(Raw, EventEmitter)
 
